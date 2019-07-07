@@ -1,2 +1,2 @@
-from RSAccount import RSAccount
-from RSClan import RSClan
+from .RSAccount import RSAccount
+from .RSClan import RSClan

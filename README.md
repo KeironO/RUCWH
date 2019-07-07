@@ -9,7 +9,7 @@ RUnescape Clan Week Helper
 If you're using a Debian-based OS, then install postgresql using apt:
 
 ```
-sudo apt install postgresql
+sudo apt install postgresql  postgresql-server-dev-all python3-dev
 ```
 
 After installing PostgreSQL database server, by default it creates a user ‘postgres’ with role ‘postgres’. It also creates a system account with same name ‘postgres’. So to connect to postgres server, login to your system as user postgres and connect database.

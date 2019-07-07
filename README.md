@@ -54,3 +54,11 @@ Create a file in your home directory called .rucwh, and put the following in it:
     "postgresql_addr": ""
 }
 ```
+
+## Environment Variables
+
+```
+export postgresql_usr=keo7
+export postgresql_pass=local
+```
+

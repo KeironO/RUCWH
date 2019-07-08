@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="author" content="Keiron O'Shea">
+    <title>{% block title %}{% endblock %} : RUCWH</title>
+    <link href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}"
+          rel="stylesheet">
+    <link href="{{ url_for('static', filename='bower_components/datatables/media/css/dataTables.bootstrap.css') }}"
+          rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+    <link href="{{ url_for('static', filename='css/global.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imgs/favicon.png') }}"/>
+
+</head>
+<body>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
+
+</body>
+
+
+<!-- Javascript Imports -->
+<script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/datatables/media/js/jquery.dataTables.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/datatables/media/js/dataTables.bootstrap.js') }}"></script>
+<script src="{{ url_for('static', filename='bower_components/datatables.net-buttons/js/dataTables.buttons.js') }}"></script>
+
+</html>

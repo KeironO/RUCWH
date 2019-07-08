@@ -34,9 +34,7 @@ def _do_service(session):
     for member in clan.clan_members:
         member = RSAccount(member)
         hiscores = member.hiscores
-        if hiscores == None:
-            pass
-        else:
+        if hiscores != None:
             for scount, sid  in enumerate(hiscores.keys()):
                 st = SkillTable()
                 st.username = member.username
@@ -44,7 +42,7 @@ def _do_service(session):
                 st.xp = int(hiscores[sid]["XP"])
                 st.level = hiscores[sid]["Level"]
                 session.add(st)
-            session.commit()
+                session.commit()
 
 if __name__ == "__main__":
     engine = _create_engine()

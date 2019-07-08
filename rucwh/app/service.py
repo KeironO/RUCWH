@@ -20,10 +20,9 @@ class SkillTable(Base):
 
 def _create_engine():
     _base_engine_url = "%s:%s@%s/rucwhdb" % (os.environ["postgresql_usr"], os.environ["postgresql_pass"], BaseConfig.POSTGRESQL_ADDR)
-    #print(_engine_url)
+    return create_engine('postgresql+psycopg2://%s' % _base_engine_url)
 
 if __name__ == "__main__":
-    #engine = create_engine('postgresql+psycopg2://scott:tiger@localhost/mydatabase')
+    engine = _create_engine()
     clan_name = BaseConfig.CLAN_NAME
     clan = RSClan(clan_name)
-    _create_engine()

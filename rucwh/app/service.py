@@ -35,14 +35,19 @@ def _do_service(session):
         member = RSAccount(member)
         hiscores = member.hiscores
         if hiscores != None:
-            for scount, sid  in enumerate(hiscores.keys()):
-                st = SkillTable()
-                st.username = member.username
-                st.skill_id = scount
-                st.xp = int(hiscores[sid]["XP"])
-                st.level = hiscores[sid]["Level"]
-                session.add(st)
-                session.commit()
+            most_rec = session.query(SkillTable).filter(SkillTable.username == member.username).filter(SkillTable.skill_id == 0).order_by("timestamp").first().xp
+            if hiscores[0]["XP"] > most_rec:
+                for scount, sid  in enumerate(hiscores.keys()):
+                    st = SkillTable()
+                    st.username = member.username
+                    st.skill_id = scount
+                    st.xp = int(hiscores[sid]["XP"])
+                    st.level = hiscores[sid]["Level"]
+                    session.add(st)
+                    session.commit()
+
+def test(session):
+    #print(session.query(SkillTable).filter(SkillTable.username == "Svephen").filter(SkillTable.skill_id == 0).order_by("timestamp").first().xp)
 
 if __name__ == "__main__":
     engine = _create_engine()
@@ -53,4 +58,5 @@ if __name__ == "__main__":
         Base().metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    _do_service(session)
+    #_do_service(session)
+    test(session)

@@ -6,7 +6,7 @@ from config import BaseConfig
 from joblib import delayed, Parallel
 from sqlalchemy import create_engine
 import os
-from db import SkillTable, Base
+from db import SkillTable, Account, Base
 
 
 def _create_engine():
@@ -22,13 +22,34 @@ def _do_service(session):
 
     for member in clan.clan_members:
         member = RSAccount(member)
+        acc_in_db = session.query(Account).filter(Account.username == member.username).first()
+        if acc_in_db  == None:
+            acc = Account()
+            acc.username = member.username
+            session.add(acc)
+            session.commit()
+            session.refresh(acc)
+            acc_id = acc.id
+        else:
+            acc_id = acc_in_db.id
+
         hiscores = member.hiscores
         if hiscores != None:
-            most_rec = session.query(SkillTable).filter(SkillTable.username == member.username).filter(SkillTable.skill_id == 0).order_by("timestamp").first().xp
-            if hiscores["Overall"]["XP"] > most_rec:
-                for scount, sid  in enumerate(hiscores.keys()):
+            most_rec = session.query(SkillTable).filter(SkillTable.account_id == acc_id).filter(SkillTable.skill_id == 0).order_by("timestamp").first()
+            if most_rec != None:
+                if hiscores["Overall"]["XP"] > most_rec.xp:
+                    for scount, sid  in enumerate(hiscores.keys()):
+                        st = SkillTable()
+                        st.account_id = acc_id
+                        st.skill_id = scount
+                        st.xp = int(hiscores[sid]["XP"])
+                        st.level = hiscores[sid]["Level"]
+                        session.add(st)
+                        session.commit()
+            else:
+                for scount, sid in enumerate(hiscores.keys()):
                     st = SkillTable()
-                    st.username = member.username
+                    st.account_id = acc_id
                     st.skill_id = scount
                     st.xp = int(hiscores[sid]["XP"])
                     st.level = hiscores[sid]["Level"]

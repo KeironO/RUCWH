@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 from sqlalchemy import create_engine
 from config import BaseConfig
 import os
+from db import SkillTable
 
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ engine = create_engine('postgresql+psycopg2://%s' % _base_engine_url, echo=True)
 def rucwh():
     return render_template("index.html")
 
-@app.route("/api/test")
-def test():
+@app.route("/api/test/<skill_id>")
+def test(skill_id):
 
-    return jsonify({})
+    return jsonify({"entry" : skill_id})

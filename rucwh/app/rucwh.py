@@ -14,4 +14,5 @@ def rucwh():
 
 @app.route("/api/test")
 def test():
+
     return jsonify({})

@@ -4,21 +4,10 @@ from rssg import RSClan, RSAccount
 import datetime
 from config import BaseConfig
 from joblib import delayed, Parallel
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, MetaData, BigInteger
+from sqlalchemy import create_engine
 import os
-from sqlalchemy.ext.declarative import declarative_base
+from db import SkillTable, Base
 
-Base = declarative_base()
-
-class SkillTable(Base):
-    __tablename__ = "skilltable"
-
-    id = Column(Integer, primary_key=True, nullable=False)
-    timestamp = Column(DateTime, default=datetime.datetime.utcnow)
-    username = Column(String)
-    skill_id = Column(Integer)
-    xp = Column(BigInteger)
-    level = Column(Integer)
 
 def _create_engine():
     _base_engine_url = "%s:%s@%s/rucwhdb" % (os.environ["postgresql_usr"], os.environ["postgresql_pass"], BaseConfig.POSTGRESQL_ADDR)
@@ -36,7 +25,7 @@ def _do_service(session):
         hiscores = member.hiscores
         if hiscores != None:
             most_rec = session.query(SkillTable).filter(SkillTable.username == member.username).filter(SkillTable.skill_id == 0).order_by("timestamp").first().xp
-            if hiscores[0]["XP"] > most_rec:
+            if hiscores["Overall"]["XP"] > most_rec:
                 for scount, sid  in enumerate(hiscores.keys()):
                     st = SkillTable()
                     st.username = member.username
@@ -59,5 +48,5 @@ if __name__ == "__main__":
         Base().metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
-    #_do_service(session)
-    test(session)
+    _do_service(session)
+    #test(session)

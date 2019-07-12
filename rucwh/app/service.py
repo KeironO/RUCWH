@@ -48,6 +48,7 @@ def _do_service(session):
 
 def test(session):
     #print(session.query(SkillTable).filter(SkillTable.username == "Svephen").filter(SkillTable.skill_id == 0).order_by("timestamp").first().xp)
+    pass
 
 if __name__ == "__main__":
     engine = _create_engine()

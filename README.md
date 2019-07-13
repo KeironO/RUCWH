@@ -1,5 +1,5 @@
 # RUCWH
-RUnescape Clan Week Helper
+RUnescape Clan Week Helper written on my week off.
 
 
 ## Installation and Setup
@@ -57,7 +57,9 @@ Create a file in your home directory called .rucwh, and put the following in it:
 
 ### systemd Service
 
-The thing that gets
+The thing that "gets" the account information acts as a systemd service (meaning that it runs in the background, and once setup requires no further interference by you).
+
+
 
 ## Environment Variables
 

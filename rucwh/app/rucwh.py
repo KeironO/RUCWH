@@ -22,11 +22,20 @@ def rucwh():
 def api():
     req_data = request.get_json()
 
+
+    # Will do the calculations server side.
+
     start_time = req_data["start_time"]
     end_time = req_data["end_time"]
     skill_id = req_data["skill_id"]
 
-    return_dict = {}
+    return_dict = {
+        "Members" : {},
+        "Info" : {
+            "Prestige Prize": BaseConfig.PRESTIGE_PRIZE,
+            "Prestige Rules" : BaseConfig.PRESTIGE_RULES
+        }
+    }
 
     for account in session.query(Account).all():
         info = session.query(SkillTable).filter(SkillTable.account_id == account.id).filter(SkillTable.skill_id == skill_id).filter(SkillTable.timestamp >= start_time).filter(SkillTable.timestamp <= end_time).order_by("timestamp").all()
@@ -35,7 +44,7 @@ def api():
             earliest = info[0]
             latest = info[-1]
 
-            return_dict[account.username] = {
+            return_dict["Members"][account.username] = {
                 "start_xp" : earliest.xp,
                 "start_lvl" : earliest.level,
                 "end_xp": latest.xp,
@@ -47,7 +56,7 @@ def api():
         elif len(info) == 1:
             only_data = info[0]
 
-            return_dict[account.username] = {
+            return_dict["Members"][account.username] = {
                 "start_xp": only_data.xp,
                 "start_lvl": only_data.level,
                 "end_xp": only_data.xp,

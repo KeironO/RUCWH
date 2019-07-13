@@ -2,15 +2,26 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-<h1>{{ clan_name }}: RUCWH</h1>
+<h1>{{ clan_name }} : RUCWH - RUnescape Clan Week Helper</h1>
 
 <p>Things to do:</p>
 
 <ol>
-    <li>Get Bootstrap going.</li>
     <li>Get DataTables going.</li>
     <li>Get something that can submit to the API going.</li>
     <li>Get something that can do all of the funky GP shit going.g</li>
 </ol>
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Date Start</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Date End</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 {% endblock %}

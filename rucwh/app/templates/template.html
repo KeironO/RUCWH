@@ -7,8 +7,6 @@
     <title>{% block title %}{% endblock %} : RUCWH</title>
     <link href="{{ url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css') }}"
           rel="stylesheet">
-    <link href="{{ url_for('static', filename='node_modules/datatables/media/css/dataTables.bootstrap.css') }}"
-          rel="stylesheet">
     {% block head %}
     {% endblock %}
 
@@ -22,5 +20,13 @@
 </body>
 
 <!-- Javascript Imports -->
+
+<script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.js') }}"></script>
+<script src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+{% block javascript %}
+
+
+{% endblock %}
 
 </html>

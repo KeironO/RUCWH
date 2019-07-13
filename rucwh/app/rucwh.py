@@ -33,7 +33,7 @@ def api():
             "lvl_diff": end.level - start.level
         }
 
-    def _calculate(members):
+    def _calculate(members, gp):
         # Total XP
         total_xp = sum([info["xp_diff"] for member, info in members.items()])
 
@@ -46,10 +46,15 @@ def api():
                 members[member]["disq"] = True
             else:
                 members[member]["disq"] = False
+            members[member]["gp_earned"] = 0
 
         _s = sorted(members.items(), key=lambda x: x[1]["xp_diff"], reverse=True)
 
-        print(_s[0:3])
+        top_three = ([x[0] for x in _s[0:len(BaseConfig.PRESTIGE_RULES)]])
+
+        for index, member in enumerate(top_three):
+            members[member]["gp_earned"] = gp * (BaseConfig.PRESTIGE_RULES[index] /100)
+
 
         return members
 
@@ -72,6 +77,6 @@ def api():
             return_dict["Members"][account.username] = _response(info[0], info[0])
 
     # Will do the calculations server side.
-    return_dict["Members"] = _calculate(return_dict["Members"])
+    return_dict["Members"] = _calculate(return_dict["Members"], req_data["gp"])
 
     return jsonify(return_dict)

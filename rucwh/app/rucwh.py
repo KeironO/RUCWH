@@ -16,7 +16,7 @@ session = Session()
 
 @app.route("/")
 def rucwh():
-    return render_template("index.html")
+    return render_template("index.html", clan_name=BaseConfig.CLAN_NAME)
 
 @app.route("/api",  methods=['POST'])
 def api():

@@ -62,3 +62,16 @@ export postgresql_usr=keo7
 export postgresql_pass=local
 ```
 
+# Documentation
+
+This is very badly written, but it works.
+
+```json
+{
+	"start_time" : "2019-07-12T23:43:44.642Z",
+	"end_time" : "2019-07-13T23:43:44.642Z",
+	"skill_id" : 0
+}
+```
+
+to ```/api```.

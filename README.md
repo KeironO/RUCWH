@@ -59,7 +59,28 @@ Create a file in your home directory called .rucwh, and put the following in it:
 
 The thing that "gets" the account information acts as a systemd service (meaning that it runs in the background, and once setup requires no further interference from you).
 
+As I'm quite lazy, I don't want to give you a service file to do this - but I will be nice enough to give you an example one below.
 
+```
+[Unit]
+Description=service to get RS information
+After=network.target
+
+[Service]
+Environment=postgresql_usr=keo7
+Environment=postgresql_pass=local
+User=keo7
+Group=www-data
+WorkingDirectory=/path/to/RUCWH/ruchwh/app
+Environment="PATH=/path/to/RUCWH/env/bin"
+ExecStart=/path/to/RUCWH/env/bin/python service.py
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+Change whatever you need to make it work, and throw it into ```/etc/systemd/system/``` as ```rucwhs.service```.
 
 ## Environment Variables
 

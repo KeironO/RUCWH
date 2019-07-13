@@ -8,7 +8,8 @@ from db import SkillTable, Account, Base
 
 
 def _create_engine():
-    _base_engine_url = "%s:%s@%s/rucwhdb" % (os.environ["postgresql_usr"], os.environ["postgresql_pass"], BaseConfig.POSTGRESQL_ADDR)
+    _base_engine_url = "%s:%s@%s/rucwhdb" % (
+    os.environ["postgresql_usr"], os.environ["postgresql_pass"], BaseConfig.POSTGRESQL_ADDR)
     return create_engine('postgresql+psycopg2://%s' % _base_engine_url, echo=True)
 
 
@@ -22,6 +23,7 @@ def add_hiscore(hiscores, acc_id, session):
         session.add(st)
         session.commit()
 
+
 def _do_service(session):
     threading.Timer(BaseConfig.TICKOVER, _do_service, [session]).start()
     clan = RSClan(BaseConfig.CLAN_NAME)
@@ -29,7 +31,7 @@ def _do_service(session):
     for member in clan.clan_members:
         member = RSAccount(member)
         acc_in_db = session.query(Account).filter(Account.username == member.username).first()
-        if acc_in_db  == None:
+        if acc_in_db == None:
             acc = Account()
             acc.username = member.username
             session.add(acc)
@@ -41,7 +43,8 @@ def _do_service(session):
 
         hiscores = member.hiscores
         if hiscores != None:
-            most_rec = session.query(SkillTable).filter(SkillTable.account_id == acc_id).filter(SkillTable.skill_id == 0).order_by("timestamp").first()
+            most_rec = session.query(SkillTable).filter(SkillTable.account_id == acc_id).filter(
+                SkillTable.skill_id == 0).order_by("timestamp").first()
             if most_rec != None:
                 if hiscores["Overall"]["XP"] > most_rec.xp:
                     add_hiscore(hiscores, acc_id, session)

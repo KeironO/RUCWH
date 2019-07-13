@@ -7,6 +7,8 @@
     <title>{% block title %}{% endblock %} : RUCWH - RUnescape Clan Week Helper</title>
     <link href="{{ url_for('static', filename='node_modules/bootstrap/dist/css/bootstrap.min.css') }}"
           rel="stylesheet">
+    <link href="{{ url_for('static', filename='node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}"
+           rel="stylesheet">
     {% block head %}
     {% endblock %}
 
@@ -21,8 +23,13 @@
 
 <!-- Javascript Imports -->
 
-<script src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.js') }}"></script>
-<script src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.js') }}"></script>
+<script type="text/javascript"  src="{{ url_for('static', filename='node_modules/jquery/dist/jquery.js') }}"></script>
+
+<script type="text/javascript"  src="{{ url_for('static', filename='node_modules/moment/min/moment.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+
 
 {% block javascript %}
 

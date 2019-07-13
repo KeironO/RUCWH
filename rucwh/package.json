@@ -10,11 +10,10 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "bootstrap": ">=4.3.1",
-    "datatables.net-bs": ">=1.0.7",
-    "datatables.net-responsive": ">=1.0.7",
-    "jquery": "^3.4.1",
-    "popper.js": "^1.15.0"
+    "bootstrap": "^4.3.1",
+    "datatables.net-bs": "^1.10.19",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "jquery": "^3.4.1"
   },
   "engines": {
     "yarn": ">= 1.0.0"

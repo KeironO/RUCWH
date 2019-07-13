@@ -38,7 +38,7 @@ def api():
         total_xp = sum([info["xp_diff"] for member, info in members.items()])
 
         # Minimum XP
-        min_xp = total_xp * BaseConfig.MIN_PART
+        min_xp = total_xp * BaseConfig.MIN_PART / 100
 
         # Apply disq mask
         for member, info in members.items():
@@ -50,10 +50,10 @@ def api():
 
         _s = sorted(members.items(), key=lambda x: x[1]["xp_diff"], reverse=True)
 
-        top_three = ([x[0] for x in _s[0:len(BaseConfig.PRESTIGE_RULES)]])
+        top = ([x[0] for x in _s[0:len(BaseConfig.PRESTIGE_RULES)]])
 
-        for index, member in enumerate(top_three):
-            members[member]["gp_earned"] = gp * (BaseConfig.PRESTIGE_RULES[index] /100)
+        for index, member in enumerate(top):
+            members[member]["gp_earned"] = gp * (BaseConfig.PRESTIGE_RULES[index] / 100)
 
 
         return members

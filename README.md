@@ -40,7 +40,7 @@ ALTER USER uid WITH PASSWORD 'password';
 Ensuring to replace ```uid``` and ```password``` to your credentials.
 
 
-## Configuration File
+### Configuration File
 
 Create a file in your home directory called .rucwh, and put the following in it:
 
@@ -55,12 +55,22 @@ Create a file in your home directory called .rucwh, and put the following in it:
 }
 ```
 
+### systemd Service
+
+The thing that gets
+
 ## Environment Variables
+
+Due to the relative inimportance of the data held within the database, I've opted to just store them as environment variables.
+
+In your terminal, type the following:
 
 ```
 export postgresql_usr=keo7
 export postgresql_pass=local
 ```
+
+Changing the username and password where necessary.
 
 # API Documentation
 

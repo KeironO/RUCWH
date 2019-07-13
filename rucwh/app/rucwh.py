@@ -33,6 +33,27 @@ def api():
             "lvl_diff": end.level - start.level
         }
 
+    def _calculate(members):
+        # Total XP
+        total_xp = sum([info["xp_diff"] for member, info in members.items()])
+
+        # Minimum XP
+        min_xp = total_xp * BaseConfig.MIN_PART
+
+        # Apply disq mask
+        for member, info in members.items():
+            if info["xp_diff"] < min_xp:
+                members[member]["disq"] = True
+            else:
+                members[member]["disq"] = False
+
+        _s = sorted(members.items(), key=lambda x: x[1]["xp_diff"], reverse=True)
+
+        print(_s[0:3])
+
+        return members
+
+
     req_data = request.get_json()
 
     return_dict = {
@@ -51,5 +72,6 @@ def api():
             return_dict["Members"][account.username] = _response(info[0], info[0])
 
     # Will do the calculations server side.
+    return_dict["Members"] = _calculate(return_dict["Members"])
 
     return jsonify(return_dict)

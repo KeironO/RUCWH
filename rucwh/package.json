@@ -1,0 +1,21 @@
+{
+  "name": "RUCWH",
+  "version": "19.07",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Keiron O'Shea <keiron.oshea@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "bootstrap": "4.3.1",
+    "datatables": "1.10.18",
+    "jquery": "3.4.1"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  }
+}

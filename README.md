@@ -123,6 +123,12 @@ export postgresql_pass=local
 
 Changing the username and password where necessary.
 
+## Yarn
+
+```
+yarn install --modules-folder ./app/static/node_modules
+```
+
 # API Documentation
 
 The API itself is incredibly simplistic, all you do is post something like...
@@ -165,3 +171,5 @@ to ```/api``` and it returns a JSON response wherein each user is a key.
     ...
    }
 ```
+
+

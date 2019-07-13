@@ -82,6 +82,34 @@ WantedBy=multi-user.target
 
 Change whatever you need to make it work, and throw it into ```/etc/systemd/system/``` as ```rucwhs.service```.
 
+Now enable it:
+
+```
+sudo systemctl enable rucwhs
+```
+
+And start it:
+
+```
+sudo systemctl start rucwhs
+```
+
+Check if it works, I get the following:
+
+```
+  ~ sudo systemctl status rucwhs.service
+● rucwhs.service - service to get RS information
+   Loaded: loaded (/etc/systemd/system/rucwhs.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sat 2019-07-13 02:40:07 BST; 2s ago
+ Main PID: 16479 (python)
+    Tasks: 2 (limit: 4915)
+   CGroup: /system.slice/rucwhs.service
+           └─16479 /home/keo7/Projects/RUCWH/env/bin/python service.py
+
+```
+
+Now, don't touch it.
+
 ## Environment Variables
 
 Due to the relative inimportance of the data held within the database, I've opted to just store them as environment variables.

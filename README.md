@@ -46,11 +46,11 @@ Create a file in your home directory called .rucwh, and put the following in it:
 
 ```json
 {
-    "clan_name": "", # Name of clan inside the quotation
-    "tickover" : 60, # Amount of time the RS API is indexed
-    "min_part" : 1.0, # Minmum % of overall clan xp required to participate
-    "prestige_prize: : 8.5, # % of total GP that's kept for the prestiege prize
-    "prestige_rules" : [60, 30, 10] # % of prestige prize for 1-3 
+    "clan_name": "",
+    "tickover" : 60, 
+    "min_part" : 1.0, 
+    "prestige_prize" : 8.5,
+    "prestige_rules" : [60, 30, 10], 
     "postgresql_addr": ""
 }
 ```
@@ -71,7 +71,7 @@ Environment=postgresql_usr=keo7
 Environment=postgresql_pass=local
 User=keo7
 Group=www-data
-WorkingDirectory=/path/to/RUCWH/ruchwh/app
+WorkingDirectory=/path/to/RUCWH/rucwh/app
 Environment="PATH=/path/to/RUCWH/env/bin"
 ExecStart=/path/to/RUCWH/env/bin/python service.py
 
